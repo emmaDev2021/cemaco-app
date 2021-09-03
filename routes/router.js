@@ -165,7 +165,10 @@ router.get('/products/:id',
 [userMiddleware.isLoggedIn, productMiddleware.validateGetById], 
 (req, res) => {
   db.query(
-  `SELECT * FROM products WHERE id = ${db.escape(req.params.id)}`,
+  `SELECT products.*,users.username as created_by_name 
+  FROM products 
+  INNER JOIN users ON products.created_by = users.id 
+  WHERE products.id = ${db.escape(req.params.id)}`,
   (err, result) => {
     if (err) return res.status(400).send({
       msg: 'Error al obtener producto'
