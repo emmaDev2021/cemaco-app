@@ -36,13 +36,14 @@ router.post('/sign-up', userMiddleware.validateRegister, (req, res) => {
         
         db.query(
           `INSERT INTO users 
-          (username, email, role, password, registered) 
+          (username, email, role, password, registered, last_login) 
           VALUES (
             ${db.escape(req.body.username)}, 
             ${db.escape(req.body.email)}, 
             ${db.escape(req.body.role)}, 
             ${db.escape(hash)}, 
-            now()
+            now(),
+            now(),
           )`,
           (err, ) => {
             if (err) return res.status(400).send({
