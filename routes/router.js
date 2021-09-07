@@ -43,7 +43,7 @@ router.post('/sign-up', userMiddleware.validateRegister, (req, res) => {
             ${db.escape(req.body.role)}, 
             ${db.escape(hash)}, 
             now(),
-            now(),
+            now()
           )`,
           (err, ) => {
             console.log(err)
