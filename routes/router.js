@@ -46,6 +46,7 @@ router.post('/sign-up', userMiddleware.validateRegister, (req, res) => {
             now(),
           )`,
           (err, ) => {
+            console.log(err)
             if (err) return res.status(400).send({
               msg: 'No se ha podido crear el usuario'
             });
