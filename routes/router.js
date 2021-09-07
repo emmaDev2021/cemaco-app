@@ -208,6 +208,7 @@ router.post('/products',
         ${db.escape(req.userData.id)}
       )`,
     (err, result) => {
+      console.log(err)
       if(err) return res.status(400).send({
         msg: 'Error al crear producto'
       });
